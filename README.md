@@ -25,23 +25,3 @@ npm run dev -- --open # localhost
 - see it hot reload thanks to Vite/SvelteKit. 
 
 You now have a self-editing component!
-
-## possible extensions
-
-- mouseover components and cmd+click to open up their source (may have to choose from a list - use event bubbling to identify the list of components?)
-- embed Monaco instance for better editing (like this https://github.com/sw-yx/svelte-zen-garden) - currently i only use `<pre contenteditable>` which is janky af
-
-## notes on filesystem access api
-
-its still too clunky - you HAVE to use `showOpenFilePicker` right now to load a file. 
-
-Ideally we can just give a known filepath and construct the `FileSystemFileHandle` ourselves, but this is currently impossible. i've [opened an issue here](https://github.com/WICG/file-system-access/issues/301).
-
-if it were, we could then instrument svelte's rollup/webpack loader to expose filepath info to every component so that we can figure out which component to open (or offer a menu of them) instead of having the user navigate to there.
-
-- basic reading: https://web.dev/file-system-access/
-- spec: https://wicg.github.io/file-system-access/#api-filpickeroptions-types
-- key PR: https://github.com/WICG/file-system-access/pull/287
-- potential polyfills
-    - https://browser-fs-access.glitch.me/
-    - https://github.com/jimmywarting/native-file-system-adapter/
